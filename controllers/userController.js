@@ -65,7 +65,7 @@ exports.putUserById = catchAsync(async(req, res) => {
     foundUser.userName = req.body.userName
     foundUser.password = req.body.password
     foundUser.email = req.body.email
-    let UpdateUser = await User.findOneAndReplace({ idUser: req.params.id }, foundUser);
+    let UpdateUser = await User.findByIdAndUpdate(foundUser._id, foundUser);
     UpdateUser = UpdateUser.toObject();
     delete UpdateUser.password;
     res.status(200).json({
